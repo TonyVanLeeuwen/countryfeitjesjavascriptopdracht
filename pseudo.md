@@ -35,6 +35,7 @@ They speak [language], [language] and [language]
  vervolgens moet de gebruikersinput gelezen worden en wordt de informatie van het ingevoerde land teruggegeven
  dit wordt alleen teruggegeven als de gebruiker op de zoekknop klikt of wanneer de gebruiker op ENTER drukt
  []inputveld schrijven
+ []inputveld toevoegen aan javascript
  []addeventlistener toevoegen voor enter
  []addeventlistener uitbreiden voor userinput
  

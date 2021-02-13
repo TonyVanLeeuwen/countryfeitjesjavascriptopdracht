@@ -1,11 +1,13 @@
 const searchbutton = document.getElementById('searchbutton');
+const countryInput = document.getElementById("countryInput");
+
 
 async function getCountryInformation(country) {
     const response = await axios.get("https://restcountries.eu/rest/v2/name/" + country + "?fullText=true");
     console.log(response.data[0]);
     console.log(response.data[0].flag);
     let getFlag = response.data[0].flag;
-    const container = document.getElementById("landencontainer");
+    const container = document.getElementById("countryContainer");
     const flagImage = document.createElement("img");
     flagImage.setAttribute("src", getFlag);
     const countryInfo = document.createElement("p");
@@ -15,7 +17,7 @@ async function getCountryInformation(country) {
         "The capital city is " + response.data[0].capital + " \n" +
         getCurrencyInformation(response.data) + "\n" +
         getLanguageInformation(response.data);
-    container.appendChild(flagImage)
+    container.appendChild(flagImage);
     container.appendChild(countryInfo);
 }
 
@@ -50,9 +52,23 @@ function getCurrencyInformation(country) { //als alles werkt, bug wegwerken voor
 const belgie = "belgie";
 const aruba = "aruba";
 const Nederland = "nederland";
+const userInput = countryInput.value;
 searchbutton.addEventListener("click", function () {
-    getCountryInformation(aruba);
+    const userInput = countryInput.value;
+    getCountryInformation(userInput);
+    countryInput.value = "";
 });
+
+countryInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        const userInput = countryInput.value;
+        getCountryInformation(userInput);
+        console.log(userInput);
+        countryInput.value = "";
+    }
+} );
+
+
 
 // getCurrencyInformation(belgie);
 // getLanguageInformation(belgie)
