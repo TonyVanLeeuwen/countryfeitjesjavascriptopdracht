@@ -3,20 +3,26 @@ const searchbutton = document.getElementById('searchbutton');
 async function getCountryInformation(country) {
     const response = await axios.get("https://restcountries.eu/rest/v2/name/" + country + "?fullText=true");
     console.log(response.data[0]);
-    console.log("talen: " + response.data[0].languages[0].name);
-    console.log(response.data[0].name + " is situated in " + response.data[0].subregion + ". \n" +
+    console.log(response.data[0].flag);
+    let getFlag = response.data[0].flag;
+    const container = document.getElementById("landencontainer");
+    const flagImage = document.createElement("img");
+    flagImage.setAttribute("src", getFlag);
+    const countryInfo = document.createElement("p");
+    countryInfo.setAttribute('style', 'white-space: pre;');
+    countryInfo.textContent = response.data[0].name + "\n" + response.data[0].name + " is situated in " + response.data[0].subregion + ". \n" +
         "It has a population of " + response.data[0].population + " people. \n" +
         "The capital city is " + response.data[0].capital + " \n" +
         getCurrencyInformation(response.data) + "\n" +
-        getLanguageInformation(response.data));
+        getLanguageInformation(response.data);
+    container.appendChild(flagImage)
+    container.appendChild(countryInfo);
 }
 
 function getLanguageInformation(country) {
-    // console.log("hallo functie");
     if (country[0].languages.length < 2) {
         return "They speak " + country[0].languages[0].name;
     } else {
-        console.log("dit land heeft meer dan 1 taal");
         let text = "They speak ";
         for (let i = 0; i < country[0].languages.length; i++) {
             if (country[0].languages[i] === country[0].languages[country[0].languages.length - 2]) {
@@ -41,12 +47,11 @@ function getCurrencyInformation(country) { //als alles werkt, bug wegwerken voor
     }
 }
 
-
 const belgie = "belgie";
 const aruba = "aruba";
 const Nederland = "nederland";
 searchbutton.addEventListener("click", function () {
-    getCountryInformation(belgie);
+    getCountryInformation(aruba);
 });
 
 // getCurrencyInformation(belgie);

@@ -26,6 +26,7 @@ zorg er vervolgens voor dat bovenstaande wordt toegevoegd aan de dom Zoals hiero
 [country-naam] is situated in [subarea-name]. It has a population of [amount] people.
 The capital is [city] and you can pay with [currency]'s
 They speak [language], [language] and [language]
+[]aparte async functie schrijven voor het ophalen van de vlag
 []element aanmaken voor de output
 []element aan de HTML toevoegen om de output ook te tonen
 
