@@ -13,7 +13,7 @@ async function getCountryInformation(country) {
         flagImage.setAttribute("src", getFlag);
         const countryInfo = document.createElement("p");
         countryInfo.setAttribute('style', 'white-space: pre;');
-        countryInfo.textContent = response.data[0].name + "\n" + response.data[0].name + " is situated in " + response.data[0].subregion + ". \n" +
+        countryInfo.textContent = response.data[0].name + "\n" + response.data[0].name + " is situated in " + response.data[0].subregion + " \n" +
             "It has a population of " + response.data[0].population + " people \n" +
             "The capital city is " + response.data[0].capital + " \n" +
             getCurrencyInformation(response.data) + "\n" +
