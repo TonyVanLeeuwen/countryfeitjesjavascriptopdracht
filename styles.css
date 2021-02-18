@@ -3,6 +3,10 @@
 body{
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
+    background-image: url("https://i.pinimg.com/originals/00/e1/fe/00e1fe0791a3703b3480332e4973ee6e.jpg");
+    background-color: blue;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .container {
@@ -24,30 +28,45 @@ body{
 
 .inputcontainer{
     width: 50px;
-    height: 50px;
+    height: 250px;
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 40%;
     margin: -25px 0 0 -25px;
 }
 
 button{
-    width: 145px;
+    width: 200px;
+    border-radius: 12px;
+}
+
+input{
+width: 200px;
+    border-radius: 12px;
+    padding: 4px;
+}
+
+input:focus{
+    outline:none;
 }
 
 input:focus::placeholder {
     color: transparent;
+
 }
 
 #countryContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     font-family: 'Open Sans', sans-serif;
-    width: 50px;
-    height: 50px;
-    /* Center vertically and horizontally */
+    width: 200px;
+    height: 200px;
     position: absolute;
-    top: 40%;
+    top: 54%;
     left: 40%;
     margin: -25px 0 0 -25px;
+    flex-wrap: nowrap;
 }
 
 img {
