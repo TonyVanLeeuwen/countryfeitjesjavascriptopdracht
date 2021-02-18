@@ -1,24 +1,27 @@
 const searchbutton = document.getElementById('searchbutton');
 const countryInput = document.getElementById("countryInput");
-
+const container = document.getElementById("countryContainer");
 
 async function getCountryInformation(country) {
-    const response = await axios.get("https://restcountries.eu/rest/v2/name/" + country + "?fullText=true");
-    console.log(response.data[0]);
-    console.log(response.data[0].flag);
-    let getFlag = response.data[0].flag;
-    const container = document.getElementById("countryContainer");
-    const flagImage = document.createElement("img");
-    flagImage.setAttribute("src", getFlag);
-    const countryInfo = document.createElement("p");
-    countryInfo.setAttribute('style', 'white-space: pre;');
-    countryInfo.textContent = response.data[0].name + "\n" + response.data[0].name + " is situated in " + response.data[0].subregion + ". \n" +
-        "It has a population of " + response.data[0].population + " people. \n" +
-        "The capital city is " + response.data[0].capital + " \n" +
-        getCurrencyInformation(response.data) + "\n" +
-        getLanguageInformation(response.data);
-    container.appendChild(flagImage);
-    container.appendChild(countryInfo);
+   try {
+       const response = await axios.get("https://restcountries.eu/rest/v2/name/" + country + "?fullText=true");
+       let getFlag = response.data[0].flag;
+       const flagImage = document.createElement("img");
+       flagImage.setAttribute("src", getFlag);
+       const countryInfo = document.createElement("p");
+       countryInfo.setAttribute('style', 'white-space: pre;');
+       countryInfo.textContent = response.data[0].name + "\n" + response.data[0].name + " is situated in " + response.data[0].subregion + ". \n" +
+           "It has a population of " + response.data[0].population + " people. \n" +
+           "The capital city is " + response.data[0].capital + " \n" +
+           getCurrencyInformation(response.data) + "\n" +
+           getLanguageInformation(response.data);
+       container.appendChild(flagImage);
+       container.appendChild(countryInfo);
+   } catch (e){
+            const errormessage = document.createElement("p")
+            errormessage.textContent = 'dat is echt geen land'
+            container.appendChild(errormessage)
+   }
 }
 
 function getLanguageInformation(country) {
@@ -40,7 +43,6 @@ function getLanguageInformation(country) {
 }
 
 function getCurrencyInformation(country) { //als alles werkt, bug wegwerken voor valuta eindigend op medeklinkers (vb. gulden's moet zijn guldens)
-    // console.log("hallo functie");
     if (country[0].currencies.length < 2) {
         return "and you can pay with " + country[0].currencies[0].name + "'s";
     }
@@ -49,11 +51,10 @@ function getCurrencyInformation(country) { //als alles werkt, bug wegwerken voor
     }
 }
 
-const belgie = "belgie";
-const aruba = "aruba";
-const Nederland = "nederland";
 const userInput = countryInput.value;
 searchbutton.addEventListener("click", function () {
+    removeChildren();
+    removeChildren();
     const userInput = countryInput.value;
     getCountryInformation(userInput);
     countryInput.value = "";
@@ -61,14 +62,17 @@ searchbutton.addEventListener("click", function () {
 
 countryInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
+        removeChildren();
+        removeChildren();
         const userInput = countryInput.value;
         getCountryInformation(userInput);
         console.log(userInput);
         countryInput.value = "";
     }
-} );
+});
 
-
-
-// getCurrencyInformation(belgie);
-// getLanguageInformation(belgie)
+function removeChildren() {
+    for (const containerNode of container.childNodes) {
+        container.removeChild(containerNode);
+    }
+}
