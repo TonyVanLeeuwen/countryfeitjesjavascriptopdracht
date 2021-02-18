@@ -59,7 +59,7 @@ function getCurrencyInformation(country) {
         return "and you can pay with " + country[0].currencies[0].name + "s";
     }
     if (country[0].currencies.length >= 2) {
-        return "and you can pay with " + country[0].currencies[0].name + "'s and " + country[0].currencies[1].name;
+        return "and you can pay with " + country[0].currencies[0].name + "s and " + country[0].currencies[1].name + "s";
     }
 }
 
