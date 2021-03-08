@@ -73,7 +73,8 @@ input:focus::placeholder {
     max-width: 1000px;
     border-radius: 4px;
     border: 1px solid lightgray;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
+    color: ;
     padding: 30px;
 }
 
